@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/bionic64"
+  config.hostmanager.enabled = true
+  config.hostmanager.include_offline = true
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "4096"
+    vb.cpus = 2
+  end
+
+  config.vm.define "kafka1" do |c|
+    c.vm.hostname = "kafka1"
+    c.vm.network "private_network", ip: "192.168.0.11"
+  end
+
+  config.vm.define "kafka2" do |c|
+    c.vm.hostname = "kafka2"
+    c.vm.network "private_network", ip: "192.168.0.12"
+  end
+
+  config.vm.define "kafka3" do |c|
+    c.vm.hostname = "kafka3"
+    c.vm.network "private_network", ip: "192.168.0.13"
+  end
+
+  config.vm.provision :shell, path: "prepare-environment.sh"
+end
