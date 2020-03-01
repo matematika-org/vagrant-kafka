@@ -14,14 +14,14 @@ cat >>/etc/hosts<<EOF
 EOF
 
 # Disable SELinux
-echo "[TASK 4] Disable SELinux"
-setenforce 0
-sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
+# echo "[TASK 4] Disable SELinux"
+# setenforce 0
+# sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
 
-# Disable swap
-echo "[TASK 7] Disable and turn off SWAP"
-sed -i '/swap/d' /etc/fstab
-swapoff -a
+# # Disable swap
+# echo "[TASK 7] Disable and turn off SWAP"
+# sed -i '/swap/d' /etc/fstab
+# swapoff -a
 
 
 # Add vagrant user to docker group

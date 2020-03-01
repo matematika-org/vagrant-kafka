@@ -16,11 +16,20 @@ Vagrant.configure(2) do |config|
 
   NodeCount = 3
 
-  # Kubernetes Worker Nodes
+  # Kafka Nodes
   (1..NodeCount).each do |i|
-    config.vm.define "kafka#{i}" do |c|
-      c.vm.hostname = "kafka#{i}"
+    config.vm.define "broker#{i}" do |c|
+      c.vm.hostname = "broker#{i}"
       c.vm.network "private_network", ip: "192.168.0.1#{i}"
+      c.vm.provision "bootstrap", type:"ansible" do |ansible|
+        ansible.playbook = "bootstrap.yml"
+      end
+      c.vm.provision "kafka", type:"ansible" do |ansible|
+        ansible.playbook = "kafka.yml"
+      end
+      c.vm.provision "zookeeper", type:"ansible" do |ansible|
+        ansible.playbook = "zookeeper.yml"
+      end
     end
   end
 
