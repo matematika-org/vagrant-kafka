@@ -2,4 +2,4 @@
 
 Разворачиваем kafka сервер vagrant скриптами.
 
-Подробнее <a href="https://matematika.org/bigdata/kafka/install/linux/">здесь</a>
+Подробнее <a href="https://javadev.org/devtools/bigdata/kafka/install/linux/">здесь</a>
